@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car List</title>
+</head>
+<body>
+
+<div>
+
+    <table bgcolor="#f0e68c" border="4">
+
+        <caption><h3>Car List</h3></caption>
+        <tr>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Series</th>
+        </tr>
+
+        <tr th:each="car: ${carList}">
+
+            <td style="text-align: center" th:text="${car.getName()}"></td>
+
+            <td style="text-align: center"  th:text="${car.getColorCar()}"></td>
+
+            <td style="text-align: center" th:text="${car.getCarSeria()}"></td>
+
+
+        </tr>
+    </table>
+
+
+</div>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Car List</title>-->
+<!--</head>-->
+<!--    <body>-->
+<!--        <div>-->
+<!--            <th:block th:each="car : ${carList}">-->
+<!--                <h3 th:text="${car.toString()}"></h3>-->
+<!--            </th:block>-->
+<!--        </div>-->
+<!--    </body>-->
+<!--</html>-->
