@@ -1,5 +1,6 @@
 package web.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,24 +12,26 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan("web")
-public class WebConfig implements WebMvcConfigurer {
+//  класс настройки -- конфигурационный класс
+
+@Configuration  // укаывает на то , что это конфигурационный класс
+@EnableWebMvc   /// указывает на то, что это Spring MVC приложение которе поддерживает веб функции
+@ComponentScan("web")  // указывает на папку в которой нужно сканировать классы
+public class WebConfig implements WebMvcConfigurer { //этот интерфейс реализуется если мы хотим настроить под себя Spring MVC
 
     private final ApplicationContext applicationContext;
-
+    @Autowired // внедряем applicationContext c помощью конструктора
     public WebConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
 
-    @Bean
+    @Bean // бин для настройки нашего Thymeleaf
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/pages/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setPrefix("/WEB-INF/pages/");// указываем папку где находятся наши views---pages--представления
+        templateResolver.setSuffix(".html");// указываем расширение представлений
         return templateResolver;
     }
 
@@ -52,6 +55,8 @@ public class WebConfig implements WebMvcConfigurer {
 }
 
 /*
+
+https://www.youtube.com/watch?v=A4iCQYoI4Cs -- по настройкам Алишев
 
 1.Скачиваем томкат 9 версию(с 10 у меня ничего не работало, так что если хотите сэкономить время , то лучше сразу
         9 ставьте)
